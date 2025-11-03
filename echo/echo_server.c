@@ -14,6 +14,7 @@
 volatile sig_atomic_t keep_running = 1;
 
 void handle_signal(int signal) {
+    (void)signal;  // Явно указываем, что параметр не используется
     keep_running = 0;
     printf("\nПолучен сигнал завершения. Завершение работы сервера...\n");
 }

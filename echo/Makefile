@@ -36,4 +36,17 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
-.PHONY: all debug release clean run
+# Тестовый клиент
+TEST_CLIENT = test_client
+TEST_SRCS = test_client.c
+TEST_OBJS = $(TEST_SRCS:.c=.o)
+
+test: $(TEST_CLIENT)
+
+$(TEST_CLIENT): $(TEST_OBJS)
+	$(CC) $(TEST_OBJS) -o $(TEST_CLIENT)
+
+test-run: test
+	./$(TEST_CLIENT)
+
+.PHONY: all debug release clean run test test-run
